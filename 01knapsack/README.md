@@ -50,3 +50,13 @@ More large scale 0/1 knapsack problems visit [David Pisinger's optimization code
 | knapPI_3_2000_1000_1  | 28919   | 28827  | 0.002            | opt  | 5.868        |
 | knapPI_3_5000_1000_1  | 72505   | 72446  | 0.004            | opt  | 38.697       |
 | knapPI_3_10000_1000_1 | 146919  | 146888 | 0.008            | opt  | 155.175      |
+
+| file              | Optimum | Greedy | Greedy_time (py) | DP   | DP_time (py)    |
+| ----------------- | ------- | ------ | ---------------- | ---- | --------------- |
+| Customized_100000 | N/A     | 358964 | 0.147            | N/A  | Memory overflow |
+|                   |         |        |                  |      |                 |
+|                   |         |        |                  |      |                 |
+|                   |         |        |                  |      |                 |
+|                   |         |        |                  |      |                 |
+|                   |         |        |                  |      |                 |
+|                   |         |        |                  |      |                 |
