@@ -51,12 +51,12 @@ int main(int argc, char *argv[]) {
 
   // IO
   int row_count;
-  file = fopen("/Users/chuanyu/Code/CSE-5707-optimization/01knapsack/data/"
-               "large_scale/knapPI_1_100_1000_1",
-               "r");
   // file = fopen("/Users/chuanyu/Code/CSE-5707-optimization/01knapsack/data/"
-  //              "low-dimensional/f1_l-d_kp_10_269",
+  //              "large_scale/knapPI_1_100_1000_1",
   //              "r");
+  file = fopen("/Users/chuanyu/Code/CSE-5707-optimization/01knapsack/data/"
+               "low-dimensional/f1_l-d_kp_10_269",
+               "r");
   //   file = fopen(argv[1], "r");
 
   row_count = 0;
