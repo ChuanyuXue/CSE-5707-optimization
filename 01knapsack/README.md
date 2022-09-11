@@ -53,7 +53,7 @@ More large scale 0/1 knapsack problems visit [David Pisinger's optimization code
 
 | file              | Optimum | Greedy | Greedy_time (py) | DP   | DP_time (py)    |
 | ----------------- | ------- | ------ | ---------------- | ---- | --------------- |
-| Customized_100000 | N/A     | 358964 | 0.147            | N/A  | Memory overflow |
+| Customized_100000 | N/A     | 358964 | 0.147            | N/A  | Memory Overflow |
 |                   |         |        |                  |      |                 |
 |                   |         |        |                  |      |                 |
 |                   |         |        |                  |      |                 |
