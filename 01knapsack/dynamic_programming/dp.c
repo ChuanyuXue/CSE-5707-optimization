@@ -47,19 +47,34 @@ int knapsack(const int W, int wt[], int val[], const int n)
 
     w = W;
     int res = K[n][W];
-    int output[n];
-    for(i = 0; i <)
-    for i in range(n, 0, -1):
-        if res <= 0:
-            break
-        if res == K[i - 1][w]:
-            continue
-        else:
-            output[i - 1] = 1
-            res = res - val[i - 1]
-            w = w - wt[i - 1]
-
-
+    int *output;
+    output = (int *)malloc(n * sizeof(int));
+    for (i = 0; i < n; i++)
+    {
+        output[i] = 0;
+    }
+    for (i = n; i != 0; i--)
+    {
+        if (res <= 0)
+        {
+            break;
+        }
+        if (res == K[i - 1][w])
+        {
+            continue;
+        }
+        else
+        {
+            output[i - 1] = 1;
+            res = res - val[i - 1];
+            w = w - wt[i - 1];
+        }
+    }
+    for (i = 0; i < n; i++)
+    {
+        printf("%d ", output[i]);
+    }
+    printf("\n");
     return K[n][W];
 }
 
@@ -107,7 +122,6 @@ int main(int argc, char *argv[])
     // file = fopen("/Users/chuanyu/Code/CSE-5707-optimization/01knapsack/data/"
     //              "large_scale/knapPI_1_100_1000_1",
     //              "r");
-
     file = fopen("/Users/chuanyu/Code/CSE-5707-optimization/01knapsack/data/"
                  "low-dimensional/f1_l-d_kp_10_269",
                  //  "low-dimensional/f2_l-d_kp_20_878",
@@ -118,7 +132,9 @@ int main(int argc, char *argv[])
     // file = fopen(argv[1], "r");
 
     row_count = 0;
+
     fscanf(file, "%d", &n);
+
     while (row_count < n)
     {
         fscanf(file, "%d %d", &weight, &value);
@@ -126,9 +142,9 @@ int main(int argc, char *argv[])
         val[row_count] = weight;
         row_count++;
     }
+
     fscanf(file, "%d", &capacity);
     fclose(file);
-
     opt_est = knapsack(capacity, wt, val, n);
     gettimeofday(&stop, NULL);
     printf("\nOptvalue -> %d, Time -> %ld,%06d", opt_est, (stop.tv_sec - start.tv_sec), stop.tv_usec - start.tv_usec);
