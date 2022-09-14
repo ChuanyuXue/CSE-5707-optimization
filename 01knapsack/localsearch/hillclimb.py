@@ -1,13 +1,16 @@
 import numpy as np
+import argparse
+import time
 
 #items
 #[0] --> array of values
 #[1] --> array of weights
 
 def read_data(path):
-    items = np.loadtxt(path, dtype=int)
-    capacity = items[0][1]
-    items = np.delete(items, 0, 0)
+    with open(path,"r") as f:
+        items=[[int(k) for k in x.split(' ')] for x in f.readlines()]
+        capacity = items[-1][0]
+        items = np.array(items[1:-1])
     return items, capacity
 
 def obj_function(items, state, capacity):
@@ -75,13 +78,18 @@ def hill_climbing(items, capacity, num_neighbors, maxIter):
 
 # ----------------------- Running -----------------------
 
-# Set these parameters
-num_neighbors = 10
-maxIter = 100
-dataset_path = '../data/large_scale/knapPI_1_10000_1000_1'
+parser = argparse.ArgumentParser()
+parser.add_argument('-i', '--input', type=str, required=True, help='Path to dataset.')
+parser.add_argument('-n', '--num_nbr', default=10)
+parser.add_argument('-m', '--max_iter', default=100)
+args = parser.parse_args()
+num_neighbors = args.num_nbr
+max_iter = args.max_iter
 
-items, capacity = read_data(dataset_path)
+start = time.time()
+items, capacity = read_data(args.input)
 
 best_state, val, count = hill_climbing(items, capacity, num_neighbors, maxIter)
 print(val)
-#print(list(best_state))
+print(list(best_state))
+print(round(time.time() - start, 3))
