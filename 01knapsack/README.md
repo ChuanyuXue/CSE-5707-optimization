@@ -58,5 +58,5 @@ More large scale 0/1 knapsack problems visit [David Pisinger's optimization code
 | DP Py (numpy accelerating)     | N/A    | 10000.000 (estimated) |
 | DP C                           | 358973 | 23.716                |
 | Hill Climb                     | 55672  | 0.403                 |
-|                                |        |                       |
+| GA                             | 62687  | 478.000               |
 |                                |        |                       |
