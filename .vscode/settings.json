@@ -1,13 +1,10 @@
 {
     "files.associations": {
-        "__availability": "c",
-        "__errc": "c",
-        "__hash_table": "c",
-        "__locale": "c",
-        "__tuple": "c",
-        "bitset": "c",
-        "ios": "c",
-        "locale": "c",
-        "__config": "c"
+        "chrono": "c",
+        "array": "c",
+        "string": "c",
+        "string_view": "c",
+        "vector": "c",
+        "iterator": "c"
     }
 }
