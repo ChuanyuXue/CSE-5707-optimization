@@ -95,7 +95,8 @@ max_iter = args.max_iter
 start = time.time()
 items, capacity = read_data(args.input)
 
-best_state, val, count = hill_climbing(items, capacity, num_neighbors, maxIter)
+best_state, val, count = hill_climbing(
+    items, capacity, num_neighbors, max_iter)
 print(val)
 # print(list(best_state))
 print(round(time.time() - start, 3))
