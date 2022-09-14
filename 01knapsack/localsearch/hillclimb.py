@@ -18,8 +18,8 @@ def read_data(path):
 def obj_function(items, state, capacity):
     value, weight = 0, 0
     state = np.array(state)
-    value = np.dot(items[0], state)
-    weight = np.dot(items[1], state)
+    value = np.dot(items[:, 0], state)
+    weight = np.dot(items[:, 1], state)
     if weight > capacity:
         return -1
     else:
@@ -88,14 +88,14 @@ parser.add_argument('-i', '--input', type=str,
 parser.add_argument('-n', '--num_nbr', default=10)
 parser.add_argument('-m', '--max_iter', default=100)
 args = parser.parse_args()
+
 num_neighbors = args.num_nbr
 max_iter = args.max_iter
 
 start = time.time()
 items, capacity = read_data(args.input)
 
-best_state, val, count = hill_climbing(
-    items, capacity, num_neighbors, max_iter)
+best_state, val, count = hill_climbing(items, capacity, num_neighbors, maxIter)
 print(val)
 # print(list(best_state))
 print(round(time.time() - start, 3))
