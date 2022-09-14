@@ -61,4 +61,3 @@ for file in listdir(PATH):
 
 # result = sorted(list(zip(listdir(PATH), values)), key=lambda x:int(x[0].split('_')[2]))
 # [print(x[1]) for x in sorted(result, key=lambda x:int(x[0].split('_')[1]))]
-

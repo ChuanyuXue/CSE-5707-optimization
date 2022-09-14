@@ -22,7 +22,7 @@ PATH = "../data/large_scale/"
 
 def knapSack(W, wt, val, n):
     K = [[0 for x in range(W + 1)] for x in range(n + 1)]
-  
+
     for i in tqdm(range(n + 1), file):
         for w in range(W + 1):
             if i == 0 or w == 0:
@@ -31,21 +31,24 @@ def knapSack(W, wt, val, n):
                 K[i][w] = max(val[i-1] + K[i-1][w-wt[i-1]],  K[i-1][w])
             else:
                 K[i][w] = K[i-1][w]
-                
-    ## OUTPUT THE PATH      
-    print('----%s Decision Result----'%file)
-    
+
+    # OUTPUT THE PATH
+        # OUTPUT THE PATH
+    print('----%s Decision Result----' % file)
     w = W
     res = K[n][W]
+    output = [0 for i in range(n)]
     for i in range(n, 0, -1):
         if res <= 0:
             break
         if res == K[i - 1][w]:
             continue
         else:
-            print(i - 1)
+            output[i - 1] = 1
             res = res - val[i - 1]
             w = w - wt[i - 1]
+    print(output)
+    print(len(output))
     return K[n][w]
 
 
@@ -84,7 +87,3 @@ for file in listdir(PATH):
 
 
 # In[ ]:
-
-
-
-
