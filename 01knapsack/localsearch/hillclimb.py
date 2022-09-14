@@ -7,9 +7,10 @@ import time
 #[1] --> array of weights
 
 def read_data(path):
-    items = np.loadtxt(path, dtype=int)
-    capacity = items[0][1]
-    items = np.delete(items, 0, 0)
+    with open(path,"r") as f:
+        items=[[int(k) for k in x.split(' ')] for x in f.readlines()]
+        capacity = items[-1][0]
+        items = np.array(items[1:-1])
     return items, capacity
 
 def obj_function(items, state, capacity):
