@@ -2,16 +2,18 @@ import numpy as np
 import argparse
 import time
 
-#items
-#[0] --> array of values
-#[1] --> array of weights
+# items
+# [0] --> array of values
+# [1] --> array of weights
+
 
 def read_data(path):
-    with open(path,"r") as f:
-        items=[[int(k) for k in x.split(' ')] for x in f.readlines()]
+    with open(path, "r") as f:
+        items = [[int(k) for k in x.split(' ')] for x in f.readlines()]
         capacity = items[-1][0]
         items = np.array(items[1:-1])
     return items, capacity
+
 
 def obj_function(items, state, capacity):
     value, weight = 0, 0
@@ -23,6 +25,7 @@ def obj_function(items, state, capacity):
     else:
         return value
 
+
 def gen_neighbors(state, num_neighbors):
     neighbors = []
     for i in range(min(num_neighbors, len(state))):
@@ -30,11 +33,12 @@ def gen_neighbors(state, num_neighbors):
         obj = np.random.randint(len(state))
         if state[obj] == 0:
             new_state[obj] = 1
-            neighbors.append(new_state) 
+            neighbors.append(new_state)
         else:
             new_state[obj] = 0
             neighbors.append(new_state)
     return neighbors
+
 
 def gen_init_state(items, capacity):
     init_state = None
@@ -42,7 +46,8 @@ def gen_init_state(items, capacity):
     balance = 0.2
 
     while not check:
-        init_states = [np.random.choice([0,1], size=items.shape[0], p=[balance, 1-balance]) for i in range(10)]
+        init_states = [np.random.choice([0, 1], size=items.shape[0], p=[
+                                        balance, 1-balance]) for i in range(10)]
         vals = [obj_function(items, state, capacity) for state in init_states]
         #print(balance, vals)
         max_val = max(vals)
@@ -51,9 +56,8 @@ def gen_init_state(items, capacity):
         else:
             init_state = init_states[vals.index(max_val)]
             check = True
-    
-    return init_state
 
+    return init_state
 
 
 def hill_climbing(items, capacity, num_neighbors, maxIter):
@@ -79,7 +83,8 @@ def hill_climbing(items, capacity, num_neighbors, maxIter):
 # ----------------------- Running -----------------------
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-i', '--input', type=str, required=True, help='Path to dataset.')
+parser.add_argument('-i', '--input', type=str,
+                    required=True, help='Path to dataset.')
 parser.add_argument('-n', '--num_nbr', default=10)
 parser.add_argument('-m', '--max_iter', default=100)
 args = parser.parse_args()
@@ -89,7 +94,8 @@ max_iter = args.max_iter
 start = time.time()
 items, capacity = read_data(args.input)
 
-best_state, val, count = hill_climbing(items, capacity, num_neighbors, maxIter)
+best_state, val, count = hill_climbing(
+    items, capacity, num_neighbors, max_iter)
 print(val)
-print(list(best_state))
+# print(list(best_state))
 print(round(time.time() - start, 3))

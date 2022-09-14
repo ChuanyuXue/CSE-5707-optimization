@@ -175,5 +175,5 @@ if not pop_size:
 
 val, solution = GA(pop_size, items, capacity, num_gen, p, mut, mut_type, use_greedy)
 print(val)
-print(solution)
+# print(solution)
 print(round(time.time() - start, 3))

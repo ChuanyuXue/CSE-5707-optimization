@@ -2,7 +2,6 @@ import numpy as np
 import os
 
 for filename in os.listdir('../data/large_scale'):
-#for filename in ['knapPI_1_100_1000_1']:
     f = open('../data/large_scale/' + filename, 'r')
     lines = f.readlines()
     f.close()
