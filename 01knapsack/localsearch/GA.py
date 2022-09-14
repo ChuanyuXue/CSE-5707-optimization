@@ -7,9 +7,10 @@ import time
 #[1] --> array of weights
 
 def read_data(path):
-    items = np.loadtxt(path, dtype=int)
-    capacity = items[0][1]
-    items = np.delete(items, 0, 0)
+    with open(path,"r") as f:
+        items=[[int(k) for k in x.split(' ')] for x in f.readlines()]
+        capacity = items[-1][0]
+        items = np.array(items[1:-1])
     return items, capacity
 
 def fitness(idv, items, capacity):
@@ -47,15 +48,11 @@ def gen_greedy_individual(items, capacity, mut, mut_type):
     idv = [0 for i in range(items.shape[0])]
     total = 0
     for x in ratios:
-        if total + items[x[0]][1] > capacity:
-            break
-        else:
+        if total + items[x[0]][1] <= capacity:
             idv[x[0]] = 1
             total += items[x[0]][1]
     if mut > 0:
         idv = mutation(idv, mut, mut_type)
-    else:
-        print('HERE', fitness(idv, items, capacity))
     if fitness(idv, items, capacity) == -1:
         idv = lighten(idv)
     return idv
@@ -174,9 +171,9 @@ if not p:
 if not mut:
     mut = 1 / items.shape[0]
 if not pop_size:
-    pop_size = min(25, items.shape[0])
+    pop_size = min(100, items.shape[0])
 
-
-val, best = GA(pop_size, items, capacity, num_gen, p, mut, mut_type, use_greedy)
+val, solution = GA(pop_size, items, capacity, num_gen, p, mut, mut_type, use_greedy)
 print(val)
+print(solution)
 print(round(time.time() - start, 3))
